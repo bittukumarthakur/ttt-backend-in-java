@@ -11,6 +11,7 @@ import java.util.Objects;
 @RestController
 public class TikTacToeController {
     private final Rooms rooms = new Rooms();
+    public final String DbSecretPassword = "fkdjfkjke2f32l3knnl";
 
     @GetMapping("/mark")
     public Status markPosition(@RequestParam() int position, @CookieValue(name = "user-name") String userName, @CookieValue(name = "room-id") int roomId) throws Exception {
