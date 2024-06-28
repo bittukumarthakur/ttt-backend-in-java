@@ -6,7 +6,7 @@ COPY . .
 
 RUN ./gradlew clean build bootJar
 
-COPY /build/libs/*.jar /app/Tic-Tac-Toe.jar
+COPY build/libs/*.jar Tic-Tac-Toe.jar
 
 EXPOSE 8080
 
