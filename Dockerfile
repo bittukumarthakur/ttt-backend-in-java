@@ -1,7 +1,13 @@
-# syntax=docker/dockerfile:1
+FROM openjdk:21-slim
 
-FROM openjdk:17-alpine
 WORKDIR /app
+
 COPY . .
+
+RUN ./gradlew clean build bootJar
+
+COPY /build/libs/*.jar /app/Tic-Tac-Toe.jar
+
 EXPOSE 8080
-CMD ["java", "-jar", "your-application.jar"]
+
+CMD ["java", "-jar", "Tic-Tac-Toe.jar"]

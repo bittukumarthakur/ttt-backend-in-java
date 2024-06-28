@@ -11,7 +11,11 @@ import java.util.Objects;
 @RestController
 public class TikTacToeController {
     private final Rooms rooms = new Rooms();
-    public final String DbSecretPassword = "fkdjfkjke2f32l3knnl";
+
+    @GetMapping("/echo")
+    public String echo() {
+        return "service is up";
+    }
 
     @GetMapping("/mark")
     public Status markPosition(@RequestParam() int position, @CookieValue(name = "user-name") String userName, @CookieValue(name = "room-id") int roomId) throws Exception {
@@ -32,7 +36,7 @@ public class TikTacToeController {
             response.addCookie(userNameCookie);
             response.addCookie(roomIdCookie);
 
-            System.out.println(roomInfo.userName() + "joined" + "room: " + roomInfo.roomId());
+            System.out.println("Room Id: " + roomInfo.roomId() + " | Joined: " + roomInfo.userName());
             return rooms.join(roomInfo.roomId(), roomInfo.userName());
         }
 
@@ -59,14 +63,6 @@ public class TikTacToeController {
         return rooms.getStatus(Integer.parseInt(roomId));
 
     }
-
-
-//    @ExceptionHandler(InvalidRoomIdException.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public String invalidRoomIdException(InvalidRoomIdException exception) {
-//        return exception.getMessage();
-//    }
-
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
