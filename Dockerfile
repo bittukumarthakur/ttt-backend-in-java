@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN ./gradlew clean build bootJar
+RUN ./gradlew clean bootJar
 
 COPY build/libs/*.jar Tic-Tac-Toe.jar
 
