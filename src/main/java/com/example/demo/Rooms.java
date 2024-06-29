@@ -17,7 +17,7 @@ public class Rooms {
     public Status getStatus(int roomId) {
         Room room = rooms.get(roomId - 1);
         if (room.ticTakToe() == null) {
-            return new Status(null, null, null, null);
+            return new Status(null, null, null, null, false);
         }
 
         return room.ticTakToe().getStatus();

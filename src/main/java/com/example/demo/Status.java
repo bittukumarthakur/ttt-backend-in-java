@@ -4,5 +4,5 @@ public record Status(
         Player[] players,
         String currentPlayerName,
         String[] board,
-        Winner winner) {
+        Winner winner, boolean isGameOver) {
 }

@@ -1,11 +1,13 @@
 package com.example.demo;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class TicTakToe {
     private final Players players;
     private Player currentPlayer;
     private Winner winner;
+    private boolean isGameOver;
     private final String[] board = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
 
     TicTakToe(Players players) {
@@ -41,9 +43,14 @@ public class TicTakToe {
         currentPlayer = players.getCurrentPlayer();
         board[position] = currentPlayer.symbol();
         winner = findWinner();
+        isGameOver = winner.winningComb().length != 0 || isBoardFull();
+    }
+
+    private boolean isBoardFull() {
+        return !Arrays.asList(board).contains(" ");
     }
 
     public Status getStatus() {
-        return new Status(players.getPlayersDetails(), players.currentPlayerName(), board, winner);
+        return new Status(players.getPlayersDetails(), players.currentPlayerName(), board, winner, isGameOver);
     }
 }
